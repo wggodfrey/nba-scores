@@ -1,0 +1,20 @@
+import React from 'react';
+
+const Lines = ({nestedData, lineFn}) => (
+  <g>
+    {
+      nestedData.map((data, i) =>
+        <path 
+          key={`path${i}`}
+          className='line'
+          d={lineFn(data)}
+          stroke={data[0].hex}
+          fill='none'
+          strokeWidth={2}
+        />
+      )
+    }
+  </g>
+);
+
+export default Lines;

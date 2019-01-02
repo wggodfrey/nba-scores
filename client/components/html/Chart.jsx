@@ -3,9 +3,10 @@ import React from 'react';
 import { scaleTime, scaleLinear } from 'd3-scale';
 import { line, curveCardinal } from 'd3-shape';
 import { timeParse } from 'd3-time-format';
-import styled from 'styled-components';
 
 import ResponsiveWrapper from './ResponsiveWrapper';
+import Axes from './../svg/Axes';
+import Lines from './../svg/Lines';
 
 class Chart extends React.Component {
 
@@ -24,15 +25,41 @@ class Chart extends React.Component {
     const ymax    = Math.max(...[].concat(...data).map(d => d.points));
 
     const extents = {
-      yMin: Math.floor((ymin * 0.9)/5)*5,
-      yMax: Math.ceil((ymax * 1.1)/5)*5,
+      yMin: Math.floor((ymin * 0.95)/2)*2,
+      yMax: Math.ceil((ymax * 1.05)/2)*2,
       xMin: Math.min(...[].concat(...data).map(d => timeParse('%m/%d/%y')(d.date))),
       xMax: Math.max(...[].concat(...data).map(d => timeParse('%m/%d/%y')(d.date))),
     };
 
-    return (
-      <div>hi</div>
+    const xScale  = this.xScale
+      .domain([extents.xMin, extents.xMax])
+      .range([margins.left, width - margins.right]);
+    const yScale  = this.yScale
+      .domain([extents.yMin, extents.yMax])
+      .range([height - margins.bottom, margins.top]);
 
+    const lineFn  = line()
+      .curve(curveCardinal)
+      .x(d => xScale(timeParse('%m/%d/%y')(d.date)))
+      .y(d => yScale(d.points));
+
+    return (
+      <svg 
+        width={width} 
+        height={height}>
+        <Axes 
+          yLabel={'Points per Game'}
+          xLabel={null}
+          scales={{xScale, yScale}}
+          margins={margins}
+          width={width}
+          height={height}
+        />
+        <Lines
+          nestedData={data}
+          lineFn={lineFn}
+        />
+      </svg>
     );
   }
 };

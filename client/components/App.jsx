@@ -1,5 +1,5 @@
 import React from 'react';
-import games from './../data/nba.csv';
+import csvData from './../data/nba.csv';
 
 import { nest as d3Nest } from 'd3-collection';
 import styled from 'styled-components';
@@ -39,7 +39,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    
+    this.formatScores(csvData);
+  }
+
+  formatScores(games) {
     const scores = games.reduce((accum, game) => {
       const team1Performance = {
         date: game['Date'],
@@ -64,10 +67,25 @@ class App extends React.Component {
 
     const teams = nests.map(nest => {
       nest.active = true;
+      let randhex = '#'+Math.floor(Math.random()*16777215).toString(16);
+      nest.values.map(value => {
+        value.hex = randhex;
+        return value;
+      });
       return nest;
     });
 
     this.setState({teams});
+  }
+
+  toggleTeam(key) {
+    this.setState(prev => {
+      let team = prev.teams.filter(t => t.key === key)[0];
+      team.active = !team.active;
+      return ({
+        teams: {...prev.teams}
+      });
+    });
   }
 
   render() {
@@ -75,6 +93,10 @@ class App extends React.Component {
       this.state.teams
       ? <AppWrapper>
           <ControlsWrapper>
+            <Legend
+              toggleTeam={this.toggleTeam.bind(this)}
+              teams={this.state.teams}
+            />
           </ControlsWrapper>
           <ChartWrapper>
             <Chart 
