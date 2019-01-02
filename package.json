@@ -6,7 +6,7 @@
     "node": ">=6.10"
   },
   "scripts": {
-    "build": "webpack -d --watch"
+    "build": "webpack -p --watch"
   },
   "repository": {
     "type": "git",
