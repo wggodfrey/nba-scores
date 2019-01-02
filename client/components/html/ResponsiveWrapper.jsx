@@ -2,13 +2,12 @@ import React from 'react'
 
 const ResponsiveWrapper = ChartComponent => (
   class ResponsiveChart extends React.Component {
+    
     constructor(props) {
       super(props)
-
       this.state = {
         containerWidth: null,
       }
-
       this.fitParentContainer = this.fitParentContainer.bind(this)
     }
 
@@ -37,7 +36,6 @@ const ResponsiveWrapper = ChartComponent => (
 
     renderChart() {
       const parentWidth = this.state.containerWidth
-
       return (
         <ChartComponent {...this.props} parentWidth={parentWidth} />
       )
@@ -46,7 +44,6 @@ const ResponsiveWrapper = ChartComponent => (
     render() {
       const { containerWidth } = this.state
       const shouldRenderChart = containerWidth !== null
-
       return (
         <div
           ref={(el) => { this.chartContainer = el }}

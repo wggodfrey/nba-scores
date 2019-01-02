@@ -1,6 +1,7 @@
 import React from 'react';
-
 import styled from 'styled-components';
+
+import Toggle from './Toggle';
 
 const Wrapper = styled.div`
   display: flex;
@@ -38,13 +39,9 @@ const Header = styled.span`
 `;
 
 const Item = styled.div`
-  margin: 14px 10px;
-`;
-
-const Label = styled.span`
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 12px;
+  float: left;
+  width: calc(100% - 18px);
+  margin: 5px 10px 2px;
 `;
 
 const Filters = ({ courts, toggleCourt }) => (
@@ -53,11 +50,19 @@ const Filters = ({ courts, toggleCourt }) => (
     <Wrapper>
       <Section>
         <Header>Court Advantage</Header>
-        <Item onClick={() => {toggleCourt('home')}}>
-          <Label>Home</Label>
+        <Item>
+          <Toggle
+            label={'HOME'}
+            handleClick={() => {toggleCourt('home')}}
+            active={courts.home}
+          />
         </Item>
-        <Item onClick={() => {toggleCourt('away')}}>
-          <Label>Away</Label>
+        <Item>
+          <Toggle
+            label={'AWAY'}
+            handleClick={() => {toggleCourt('away')}}
+            active={courts.away}
+          />
         </Item>
       </Section>
       <Section>
