@@ -20,7 +20,17 @@ class Chart extends React.Component {
     const width   = Math.max(this.props.parentWidth, 300)
     const height  = this.props.height;
     const margins = this.props.margins;
-    const data    = this.props.teams.map(team => team.active? team.values: [] );
+    const data    = this.props.teams.map(team => {
+      if (team.active) {
+        let values = team.values;
+        if (!this.props.courts.home)
+          values = values.filter(v => v.court !== 'home');
+        if (!this.props.courts.away)
+          values = values.filter(v => v.court !== 'away');
+        return values;
+      }
+      return [];
+      });
     const ymin    = Math.min(...[].concat(...data).map(d => d.points));
     const ymax    = Math.max(...[].concat(...data).map(d => d.points));
 

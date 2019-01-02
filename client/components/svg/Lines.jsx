@@ -10,7 +10,7 @@ const Lines = ({nestedData, lineFn}) => (
           d={lineFn(data)}
           stroke={data[0]? data[0].hex: '000000'}
           fill='none'
-          strokeWidth={2}
+          strokeWidth={1.5}
         />
       )
     }
