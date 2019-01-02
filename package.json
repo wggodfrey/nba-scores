@@ -1,0 +1,33 @@
+{
+  "name": "nba-scores",
+  "version": "1.0.0",
+  "description": "'line-chart of nba scores over time'",
+  "scripts": {
+    "build": "webpack -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://wggodfrey@bitbucket.org/wggodfrey/nba-scores.git"
+  },
+  "author": "Will Godfrey",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-react": "^1.0.0",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "d3-axis": "^1.0.12",
+    "d3-request": "^1.0.6",
+    "d3-scale": "^2.1.2",
+    "d3-shape": "^1.2.2",
+    "moment": "^2.23.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "styled-components": "^4.1.3"
+  }
+}
