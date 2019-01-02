@@ -8,7 +8,7 @@ const Lines = ({nestedData, lineFn}) => (
           key={`path${i}`}
           className='line'
           d={lineFn(data)}
-          stroke={data[0].hex}
+          stroke={data[0]? data[0].hex: '000000'}
           fill='none'
           strokeWidth={2}
         />

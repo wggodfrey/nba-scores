@@ -5,6 +5,7 @@ import { nest as d3Nest } from 'd3-collection';
 import styled from 'styled-components';
 
 import Chart from './html/Chart';
+import Legend from './html/Legend';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -12,20 +13,22 @@ const AppWrapper = styled.div`
   height: 100vh;
   background: #efefef;
 `;
+
 const ControlsWrapper = styled.div`
   display: inline-block;
   float: left;
   width: 200px;
   margin: 10px 0px 10px 10px;
-  height: 500px;
+  height: calc(100vh - 20px);
   background: #fff;
 `;
+
 const ChartWrapper = styled.div`
   display: inline-block;
   float: left;
   margin: 10px;
   width: calc(100% - 230px);
-  height: 500px;
+  height: 420px;
   background: #fff;
 `;
 
@@ -83,7 +86,7 @@ class App extends React.Component {
       let team = prev.teams.filter(t => t.key === key)[0];
       team.active = !team.active;
       return ({
-        teams: {...prev.teams}
+        teams: prev.teams,
       });
     });
   }
@@ -101,8 +104,8 @@ class App extends React.Component {
           <ChartWrapper>
             <Chart 
               teams={this.state.teams}
-              margins={{top:20, right: 40, bottom: 25, left: 70}}
-              height={400}
+              margins={{top:20, right: 40, bottom: 20, left: 70}}
+              height={410}
             />
           </ChartWrapper>
         </AppWrapper>
