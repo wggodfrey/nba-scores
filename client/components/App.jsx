@@ -60,8 +60,11 @@ class App extends React.Component {
   }
 
   handleFormattedData(teams) {
-    console.log(teams);
-    this.setState({teams});
+    if (teams.length > 0) {
+      this.setState({teams});
+    } else {
+      alert('Please provide a properly-structured dataset.');
+    }
   }
 
   toggleCourt(court) {
