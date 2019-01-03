@@ -43,7 +43,7 @@ const Label = styled.div`
 
 const Legend = ({ teams, toggleTeam }) => (
   <Wrapper>
-    <Title>Teams</Title>
+    <Title>Legend</Title>
     {
       teams.map((team, i) => 
         <Item 

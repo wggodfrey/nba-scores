@@ -19,15 +19,6 @@ module.exports = {
           presets: ['@babel/preset-react','@babel/preset-env'],
         },
       },
-      {
-        test: /\.csv?/,
-        include: path.join(__dirname, '/client'),
-        loader: 'csv-loader',
-        options: {
-          header: true,
-          skipEmptyLines: true,
-        },
-      },
     ],
   },
 };
