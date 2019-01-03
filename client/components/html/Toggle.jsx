@@ -28,7 +28,7 @@ const Track = styled.div`
   display: inline-block;
   float: left;
   height: 7px;
-  width: 40px;
+  width: 50px;
   margin: 4px 0px;
   border-radius: 3px;
   background: #a9a9a9;
